@@ -1,16 +1,13 @@
 import AppStack from "./AppStack";
-import { NavigationContainer } from '@react-navigation/native';
 import AuthStack from "./AuthStack";
+import AuthContext from "@/context/auth";
+import { useContext } from "react";
 
 
 
 const Routes = () => {
-    const token = false
+    const { signed } = useContext(AuthContext);
 
-    return (
-        <NavigationContainer>
-            {!token ? <AuthStack /> : <AppStack />}
-        </NavigationContainer >
-    )
+    return signed ? <AppStack /> : <AuthStack />
 };
 export default Routes;

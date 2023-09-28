@@ -1,9 +1,9 @@
 import { View, Image } from 'react-native'
 
-export const LogoAcaso = () => {
+export const HeaderLogoAcaso = () => {
     return (
-        <View style={{ justifyContent: 'center', alignItems: 'center', aspectRatio: 5, height: '100%' }}>
-            <Image source={require('@/assets/Images/logoAcaso.png')} resizeMode='center' />
+        <View style={{ alignItems: 'center', alignSelf: 'center', width: '100%', marginRight: 80, justifyContent: 'flex-start' }}>
+            <Image source={require('@/assets/Images/logoAcaso.png')} resizeMode='center' style={{ alignItems: 'center', height: 20 }} />
         </View>
     )
 }

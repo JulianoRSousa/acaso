@@ -3,23 +3,25 @@ import { AuthStackParamList } from '@/types/global';
 import Login from '@/screens/Login/Login';
 import Register from '@/screens/Register/Register';
 import Verify from '@/screens/Verify/Verify';
-import { colors } from '@/theme';
-import { LogoAcaso } from '@/components';
+import { HeaderLogoAcaso } from '@/components';
+import { useTheme } from 'styled-components';
 
 
 const { Navigator, Screen } = createNativeStackNavigator<AuthStackParamList>();
 
-const AuthStack = () => {
+const AuthStack: React.FC = () => {
+    const theme = useTheme();
+
     return (
         <Navigator initialRouteName={'Login'} screenOptions={{
-            contentStyle: { backgroundColor: colors.Galaxy['Background-Blue'] },
+            contentStyle: { backgroundColor: theme.colors.Galaxy['Background-Primary-800'] },
             statusBarAnimation: 'fade',
             statusBarTranslucent: true,
             statusBarStyle: 'light',
-            statusBarColor: colors.Galaxy['Background-Blue'],
+            statusBarColor: theme.colors.Galaxy['Background-Primary-800'],
             headerTransparent: true,
             headerBackVisible: false,
-            headerTitle: () => <LogoAcaso />,
+            headerTitle: () => <HeaderLogoAcaso />,
         }}>
             <Screen
                 name="Login"
@@ -33,7 +35,7 @@ const AuthStack = () => {
                 name="Verify"
                 component={Verify}
             />
-        </Navigator>
+        </Navigator >
     );
 };
 
