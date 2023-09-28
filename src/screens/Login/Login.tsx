@@ -36,7 +36,7 @@ const Login = () => {
                 style={{ fontFamily: 'Raleway-Thin' }}
             />
 
-            <AcasoButton onPress={() => signIn()} variant={'primary'} title='Entrar' />
+            <AcasoButton onPress={() => handleSign()} variant={'primary'} title='Entrar' />
             <Text>Não possui conta em aca.so?</Text>
             <AcasoButton onPress={() => navigate('Register')} variant={'secondary'} title='Criar uma conta' />
         </Container>

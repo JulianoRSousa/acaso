@@ -1,4 +1,5 @@
 import { Container, Text, AcasoInput, AcasoButton } from '@/components';
+import { signIn } from '@/services/auth';
 import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
 import { View } from 'react-native';
@@ -17,7 +18,7 @@ const Verify: React.FC = () => {
                 style={{ fontFamily: 'Raleway-Thin' }}
             />
 
-             <AcasoButton onPress={() => console.log('button')} variant={'primary'} title='Confirmar e-mail' />
+             <AcasoButton onPress={() => navigate('Login')} variant={'primary'} title='Confirmar e-mail' />
             <Text>Não recebeu o código?</Text>
              <AcasoButton onPress={() => console.log('resend')} variant={'secondary'} title='Reenviar código' />
             <View style={{ minHeight: '25%' }} /> 

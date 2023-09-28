@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { AuthStackParamList } from '@/types/global';
+import { AuthStackParamList } from '@/types/navigation';
 import Login from '@/screens/Login/Login';
 import Register from '@/screens/Register/Register';
 import Verify from '@/screens/Verify/Verify';

@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { AppStackParamList } from '@/types/global';
+import { AppStackParamList } from '@/types/navigation';
 import { HeaderLogoAcaso } from '@/components';
 import { useTheme } from 'styled-components';
 import Home from '@/screens/Home/Home';

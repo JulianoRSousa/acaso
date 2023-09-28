@@ -1,21 +1,26 @@
 import {acasoApi} from '@/network/api';
 
-interface Response {
-  token: string;
-  user: {
-    name: string;
-    email: string;
-  };
+interface SignUpProps {
+  email: string;
+  password: string;
+  first_name: string;
+  last_name: string;
 }
 
-export async function signIn(email: string, password: string) {
+export async function signUp({
+  email,
+  password,
+  first_name,
+  last_name,
+}: SignUpProps) {
   acasoApi({
     method: 'post',
-    url: '/auth/signin',
+    url: '/auth/sign-up',
     data: {
-      email,
-
-      password,
+      email: email,
+      first_name: first_name,
+      last_name: last_name,
+      password: password,
     },
     headers: {
       accept: 'application/json',
@@ -25,13 +30,8 @@ export async function signIn(email: string, password: string) {
   })
     .then(response => {
       console.log('Data: ', response.data);
-      return response.data;
     })
     .catch(error => {
       console.error(error);
-      return null;
     });
-}
-export function signOut() {
-  return null;
 }

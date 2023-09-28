@@ -1,55 +1,73 @@
 import { Container, Text, AcasoInput, AcasoButton } from '@/components';
 import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
+import { useRegister } from './hooks/useRegister';
 
 const Register = () => {
-    const [email, setEmail] = useState('');
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
     const { navigate } = useNavigation();
+
+    const {
+        errors,
+        handleBlur,
+        setFieldValue,
+        submitForm,
+        values,
+        touched
+    } = useRegister();
+
+    console.log('values: ', values)
+
     return (
         <Container>
             <Text style={{ fontSize: 32, fontWeight: '700' }}>Cadastro</Text>
             <AcasoInput label="E-mail*"
-                value={email}
-                onChangeText={(text) => setEmail(text)}
+                value={values.email}
+                onChangeText={(text) => setFieldValue('email', text)}
                 placeholder="seu@email.com"
                 keyboardType="email-address"
                 style={{ fontFamily: 'Raleway-Thin' }}
+                error={touched.email && errors.email ? errors.email : ''}
+                onBlur={handleBlur('email')}
             />
             <AcasoInput
                 label="Primeiro nome*"
-                value={firstName}
-                onChangeText={setFirstName}
+                value={values.firstName}
+                onChangeText={(text) => setFieldValue('firstName', text)}
                 placeholder="Primeiro nome"
                 style={{ fontFamily: 'Raleway-Thin' }}
+                error={touched.firstName && errors.firstName ? errors.firstName : ''}
+                onBlur={handleBlur('firstName')}
             />
             <AcasoInput
                 label="Último nome*"
-                value={lastName}
-                onChangeText={setLastName}
+                value={values.lastName}
+                onChangeText={(text) => setFieldValue('lastName', text)}
                 placeholder="Último nome"
                 style={{ fontFamily: 'Raleway-Thin' }}
+                error={touched.lastName && errors.lastName ? errors.lastName : ''}
+                onBlur={handleBlur('lastName')}
             />
             <AcasoInput
                 label="Senha*"
-                value={password}
-                onChangeText={setPassword}
+                value={values.password}
+                onChangeText={(text) => setFieldValue('password', text)}
                 placeholder="*************"
                 secureTextEntry={true}
                 style={{ fontFamily: 'Raleway-Thin' }}
+                error={touched.password && errors.password ? errors.password : ''}
+                onBlur={handleBlur('password')}
             />
             <AcasoInput
                 label="Confirme sua senha*"
-                value={confirmPassword}
-                onChangeText={setConfirmPassword}
+                value={values.confirmPassword}
+                onChangeText={(text) => setFieldValue('confirmPassword', text)}
                 placeholder="*************"
                 secureTextEntry={true}
                 style={{ fontFamily: 'Raleway-Thin' }}
+                error={touched.confirmPassword && errors.confirmPassword ? errors.confirmPassword : ''}
+                onBlur={handleBlur('confirmPassword')}
             />
-            <AcasoButton onPress={() => navigate('Verify')} variant={'primary'} title='Criar conta em aca.so' />
+            <AcasoButton onPress={() => submitForm()} variant={'primary'} title='Criar conta em aca.so' />
             <AcasoButton onPress={() => navigate('Login')} variant={'secondary'} title='Voltar ao login' />
         </Container>
     );

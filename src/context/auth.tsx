@@ -15,6 +15,14 @@ type AuthProviderProps = {
     children: React.ReactNode;
 };
 
+interface Response {
+    token: string;
+    user: {
+        name: string;
+        email: string;
+    };
+}
+
 /**
  * A function that acts as an authentication provider in a React application.
  *
@@ -25,8 +33,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const [user, setUser] = useState<object | null>(null);
 
     async function signIn() {
-        const response = await auth.signIn();
-        setUser(response.user);
+        const response = auth.signIn();
+        setUser(response?.user ?? null);
     }
 
     async function signOut() {
