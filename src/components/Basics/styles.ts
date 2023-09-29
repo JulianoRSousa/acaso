@@ -1,12 +1,11 @@
 import styled from 'styled-components/native';
 
-export const Container = styled.SafeAreaView`
-  height: 100%;
+export const Container = styled.View`
+  flex: 1;
+  align-self: center;
   align-items: center;
   justify-content: center;
-  align-self: center;
-  justify-self: center;
-  width: 90%;
+  width: 85%;
 `;
 
 export const Text = styled.Text`

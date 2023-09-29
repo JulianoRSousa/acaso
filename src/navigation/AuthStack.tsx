@@ -19,7 +19,7 @@ const AuthStack: React.FC = () => {
             statusBarTranslucent: true,
             statusBarStyle: 'light',
             statusBarColor: theme.colors.Galaxy['Background-Primary-800'],
-            headerTransparent: true,
+            headerStyle: { backgroundColor: theme.colors.Galaxy['Background-Primary-800'] },
             headerBackVisible: false,
             headerTitle: () => <HeaderLogoAcaso />,
         }}>

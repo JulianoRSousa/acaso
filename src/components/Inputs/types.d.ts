@@ -7,6 +7,7 @@ export interface ExtraInputProps {
   label?: string;
   showPassword?: boolean;
   error?: string;
+  [key: string]: any;
 }
 
 export type InputProps = TextInputProps & ExtraInputProps;
