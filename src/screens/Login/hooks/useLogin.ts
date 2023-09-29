@@ -1,12 +1,10 @@
 import AuthContext from '@/context/auth';
-import {useNavigation} from '@react-navigation/native';
 import {useFormik} from 'formik';
 import {useContext} from 'react';
 import * as Yup from 'yup';
 
 export const useLogin = () => {
   const {signIn} = useContext(AuthContext);
-  const {navigate} = useNavigation();
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -22,7 +20,8 @@ export const useLogin = () => {
     },
     initialErrors: {},
     onSubmit: values => {
-      signIn();
+      signIn(values.email, values.password);
+      
     },
     validationSchema: validationSchema,
     validateOnBlur: true,

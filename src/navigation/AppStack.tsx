@@ -18,6 +18,7 @@ const AppStack = () => {
             statusBarColor: theme.colors.Galaxy['Background-Primary-800'],
             headerTransparent: true,
             headerBackVisible: false,
+            headerTitleAlign: 'center',
             headerTitle: () => <HeaderLogoAcaso />,
         }}>
             <Screen
@@ -25,6 +26,7 @@ const AppStack = () => {
                 component={Home}
                 options={{
                     headerShown: false,
+                    statusBarColor: theme.colors.GreyScale['Black-900'],
                 }}
             />
             <Screen

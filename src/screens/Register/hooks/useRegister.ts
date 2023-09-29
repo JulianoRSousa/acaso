@@ -1,11 +1,13 @@
-import {useApi} from '@/hooks';
+import {useApi, useUserInfo} from '@/hooks';
 import {useNavigation} from '@react-navigation/native';
 import {useFormik} from 'formik';
+import {Alert} from 'react-native';
 import * as Yup from 'yup';
 
 export const useRegister = () => {
   const {signUp} = useApi();
   const {navigate} = useNavigation();
+  const {editUserData} = useUserInfo();
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -35,7 +37,26 @@ export const useRegister = () => {
     },
     initialErrors: {},
     onSubmit: values => {
-      navigate('Verify');
+      signUp(
+        values.email,
+        values.password,
+        values.firstName,
+        values.lastName,
+      ).then(response => {
+        editUserData({
+          firstName: values.firstName,
+          lastName: values.lastName,
+          email: values.email,
+        });
+        if (
+          response.status === 200 ||
+          response?.response?.data?.code == 'ERR.1.0010'
+        ) {
+          navigate('Verify');
+        } else {
+          Alert.alert('Erro', response.response?.data.message);
+        }
+      });
     },
     validationSchema: validationSchema,
     validateOnBlur: true,

@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Image, TouchableOpacity, View } from 'react-native';
 import { Container, AcasoButton, Text } from '@/components';
 import { useTheme } from 'styled-components';
 import LinearGradient from 'react-native-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
+import AuthContext from "@/context/auth";
+import { useProfilePicture } from './hooks/useProfilePicture';
+
+
 
 const ProfilePicture: React.FC = () => {
     const theme = useTheme()
     const photo = true
+    const { user } = useContext(AuthContext)
+    const { data } = useProfilePicture()
+    console.log('dataaa: ', data)
 
     const { navigate } = useNavigation()
 
@@ -36,7 +43,7 @@ const ProfilePicture: React.FC = () => {
                 :
                 <View style={{ justifyContent: 'center', width: '100%' }}>
                     <AcasoButton onPress={() => navigate('Home')} title='Continuar' />
-                    <AcasoButton onPress={() => console.log('button')} variant={'secondary-light'} title='Trocar foto' />
+                    <AcasoButton onPress={() => console.log('userData: ', JSON.stringify(user, null, 2))} variant={'secondary-light'} title='Trocar foto' />
                 </View>}
         </Container>
     )
